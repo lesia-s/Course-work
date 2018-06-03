@@ -47,42 +47,32 @@ class HuffmanTree {
   }
 
   encodeCharacter(character, node, encodedBinaryArray) {
-    if (node === undefined) {
-      return null;
-    }
+    if (node === undefined) return null;
     if (node.value === character) {
       return encodedBinaryArray.join('');
     }
     const leftSearch = this
       .encodeCharacter(character, node.left, encodedBinaryArray.concat(['0']));
-    if (leftSearch) {
-      return leftSearch;
-    }
+    if (leftSearch) return leftSearch;
     const rightSearch = this
       .encodeCharacter(character, node.right, encodedBinaryArray.concat(['1']));
-    if (rightSearch) {
-      return rightSearch;
-    }
+    if (rightSearch) return rightSearch;
     return null;
   }
-
+  
   decode(binaryString) {
-    const binaryArray = binaryString.split('');
-    const outputArray = [];
+    let outputString = '';
     let currentNode = this.tree;
-    for (const binaryNumber of binaryArray) {
-      if (binaryNumber === '0') {
-        currentNode = currentNode.left;
-      } else {
-        currentNode = currentNode.right;
-      }
+    for (const char of binaryString) {
+      currentNode = char === '0' ? currentNode.left :
+        currentNode.right;
       if (currentNode.value !== null) {
-        outputArray.push(currentNode.value);
+        outputString += currentNode.value;
         currentNode = this.tree;
       }
     }
 
-    return outputArray.join('');
+    return outputString;
   }
 
   toString() {
