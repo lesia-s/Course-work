@@ -1,6 +1,6 @@
 'use strict';
 
-const HuffmanTree = require('./2.js');
+const HuffmanTree = require('./huffman.js');
 
 const string = 'In computer science and information theory, a Huffman code is\
  a particular type of optimal prefix code that is commonly used for lossless\
