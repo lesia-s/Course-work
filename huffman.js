@@ -59,14 +59,13 @@ class HuffmanTree {
     if (rightSearch) return rightSearch;
     return null;
   }
-  
+
   decode(binaryString) {
     let outputString = '';
     let currentNode = this.tree;
     for (const char of binaryString) {
-      currentNode = char === '0' ? currentNode.left :
-        currentNode.right;
-      if (currentNode.value !== null) {
+      currentNode = currentNode[char === '0' ? 'left' : 'right'];
+      if (currentNode.value) {
         outputString += currentNode.value;
         currentNode = this.tree;
       }
